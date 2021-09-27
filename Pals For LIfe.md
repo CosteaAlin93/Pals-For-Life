@@ -44,7 +44,7 @@ We have a user: leeroy.
 
 ---
 
-- I tried scanning the other ports with Gobuster, to see if other pages are around there. The 30180 returned something interesting:
+- I tried scanning the other ports with Gobuster, to see if other pages are around there. The 30180 returned something interesting!
 
 `sudo gobuster dir -u http://$ip:30180 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt | tee palsforlifegobuster.txt`
 
