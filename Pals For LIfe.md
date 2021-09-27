@@ -20,4 +20,5 @@ Please allow 5 minutes for the machine to fully boot up.
 
 - Get machine IP and check the connectivity:
 
-![4f40fb7d8cccad4211ad1012d4bb2e9a.png](file:///home/scorpion/.config/joplin-desktop/resources/d635f2b173b94cf6878246be40c0b946.png)
+![image](https://user-images.githubusercontent.com/86648102/134856161-b3e24cbd-7747-4343-a370-32fa05a1725d.png)
+
