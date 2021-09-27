@@ -14,11 +14,15 @@ Please allow 5 minutes for the machine to fully boot up.
 
 ### Flag 1
 
-`export ip=10.10.247.167`
+`export ip=10.10.219.14`
 
 `ping $ip`
 
 - Get machine IP and check the connectivity:
 
-![image](https://user-images.githubusercontent.com/86648102/134856161-b3e24cbd-7747-4343-a370-32fa05a1725d.png)
+![image](https://user-images.githubusercontent.com/86648102/134903424-aebdd489-9e4f-4471-b155-6eeade692bc6.png)
 
+Open ports:
+- 22
+- 10250
+-   
