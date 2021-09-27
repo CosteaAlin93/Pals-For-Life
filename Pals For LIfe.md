@@ -61,6 +61,37 @@ Nothing special on the page, except the video. However, when inspecting the page
 ![image](https://user-images.githubusercontent.com/86648102/134906809-ee1d0239-2d66-439e-bae9-10185e572e1c.png)
 
 
-Someone forgot an "uninteresting" file around.
+Someone forgot an "uninteresting" file around. Let's put the code in a text file and see what we can do.
+
+![image](https://user-images.githubusercontent.com/86648102/134907151-805d81e9-74a1-4bde-98b0-c2631dfeaf8e.png)
+
+What if we decode it with base64?
+
+`cat contentfromsite | base64 --decode > uninteresting_file.pdf`
+
+![image](https://user-images.githubusercontent.com/86648102/134907464-9d8b6ac1-0d8f-45ea-8f61-563b952a27c1.png)
+
+
+Apparently it's password protected. We will use **John The Ripper** for this one.
+`/usr/share/john/pdf2john.pl uninteresting_file.pdf > pdfhash.txt`
+The format to be used will be shown with this command:
+
+`john --list=formats | grep -i pdf`
+
+And to crack the password of the file:
+
+`john --format=PDF --wordlist=/usr/share/wordlists/rockyou.txt pdfhash.txt`
+
+`john --show pdfhash.txt`
+
+**It worked!**
+
+![image](https://user-images.githubusercontent.com/86648102/134908157-99295585-44ac-477e-9df5-f645867be2bb.png)
+
+
+
+
+
+
 
 
