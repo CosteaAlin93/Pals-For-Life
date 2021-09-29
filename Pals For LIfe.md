@@ -182,7 +182,8 @@ As, we have the permissions, let's check the secret resources:
 We will create a new pod and abuse this.
 Create a **host.yaml**
 
-```apiVersion: v1
+```
+apiVersion: v1
 kind: Pod
 metadata:
   name: host
@@ -199,7 +200,8 @@ spec:
   - name: host
     hostPath:
       path: /
-      type: Directory```
+      type: Directory
+```
 
 And then run the following command:
   
@@ -215,9 +217,5 @@ And with this, we are in as root:
 
 Last flag is here.
 
-
-
-
-
-
+Congrats for making it so far. Contact me in case of further explanations are needed!
 
