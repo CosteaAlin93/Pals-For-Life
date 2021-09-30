@@ -1,6 +1,8 @@
 # Pals For Life
 
-![image](https://user-images.githubusercontent.com/86648102/135341140-8a711e05-557d-44c8-a326-d243c4a6c260.png)
+This is my writeup for the TryHackMe room [Pals For Life](https://tryhackme.com/room/palsforlife) created by [ttauveron](https://tryhackme.com/p/ttauveron).
+
+![image](https://user-images.githubusercontent.com/86648102/134854878-900bff84-6396-4adf-a4dc-4bc04a99152c.png)
 
 ---
 
